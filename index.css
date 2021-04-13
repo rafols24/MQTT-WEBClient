@@ -1,13 +1,92 @@
-h1 {
-    border: 1px solid black;
+#text1 {
+    font-size: 50px;
+    margin-top: 50px;
 }
 
-.row {
-    padding: 5px;
+#text2 {
+    font-size: 30px;
 }
 
-div.form-group {
-    border: 1px solid black;
-    /* padding: 20px; */
+.modal-header {
+    background-color: black;
+    color: yellow;
+}
+
+.message-header {
+    background-color: black;
+    color: white;
+}
+
+.modal-dialog {
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+}
+
+button {
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+    background-color: black;
+    color: white;
+}
+
+body {
+    background: linear-gradient(0deg, rgba(34, 193, 195, 1) 0%, rgba(253, 187, 45, 1) 100%);
+}
+
+.bs-example {
+    margin: 20px;
+}
+
+#pub-Top,
+#pub-Pay,
+#sub-Top,
+#status,
+#input1 {
+    width: 150px;
+    /* box-sizing: border-box; */
+    border: 2px solid black;
+    border-radius: 4px;
+    font-size: 16px;
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    /* padding: 12px 20px 12px 40px; */
+    transition: width 0.4s ease-in-out;
+}
+
+#input1:focus {
     width: 100%;
+}
+
+#status:focus {
+    width: 100%;
+}
+
+#pub-Top:focus {
+    width: 100%
+}
+
+#pub-Pay:focus {
+    width: 100%;
+}
+
+#sub-Top:focus {
+    width: 100%;
+}
+
+.ml6 {
+    position: relative;
+    font-weight: 900;
+    font-size: 3.3em;
+}
+
+.ml6 .text-wrapper {
+    position: relative;
+    display: inline-block;
+    padding-top: 0.2em;
+    padding-right: 0.05em;
+    padding-bottom: 0.1em;
+    overflow: hidden;
+}
+
+.ml6 .letter {
+    display: inline-block;
+    line-height: 1em;
 }

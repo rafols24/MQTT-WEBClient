@@ -1,4 +1,5 @@
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -6,29 +7,179 @@
 
     <!-- Added the Bootstrap CDN -->
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
     <link rel="stylesheet" href="index.css">
+
 </head>
+
 <body>
-    <div class="col-sm-12">
-        <h1>MQTT</h1>
-        <div class="form-group container">
+    <center>
+        <h1 class="ml6">
+            <span class="text-wrapper">
+          <span class="letters">MQTT with JavaScript using MQTT.js
+        </span>
+            </span>
+        </h1>
+    </center>
+    <div class="bs-example">
+        <div class="container-fluid">
             <div class="row">
-                <input id="pub-input" type="text">
+                <div class="col-sm-4">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">BROKER</h5>
+                            </div>
+                            <div class="modal-body">
+                                <strong>
+                                    <h5>Address: </h5>
+                                </strong>
+                                <input type="text" id="input1" value="wss://test.mosquitto.org:8081/mqtt"><br><br>
+                                <button type="button" class="btn btn-outline-dark" id="connectBtn">Connect</button> &nbsp; <button type="button" class="btn btn-outline-dark" id="discon">DisConnect</button><br><br>
+                                <strong>
+                                    <h5>Status: </h5>
+                                </strong>
+                                <input type="text" id="status"><br>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-sm-4">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">PUBLISH</h5>
+                            </div>
+                            <div class="modal-body">
+                                <strong>
+                                    <h5>TOPIC: </h5>
+                                </strong>
+                                <input type="text" id="pub-Top"><br><br>
+                                <strong>
+                                    <h5>PAYLOAD: </h5>
+                                </strong>
+                                <input type="text" id="pub-Pay"><br><br>
+                                <button type="button" class="btn btn-outline-dark" id="pub-button">Publish</button><br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-4">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">SUBSCRIBE</h5>
+                            </div>
+                            <div class="modal-body">
+                                <strong>
+                                    <h5>Topic: </h5>
+                                </strong>
+                                <input type="text" id="sub-Top"><br><br>
+                                <button type="button" class="btn btn-outline-dark" id="sub-button">Subscribe</button>
+                                <br><br><br><br><br>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
             </div>
-            <div class="row">
-                <button id="pub-button" class="btn btn-primary" value="">Publish</button>
-            </div>    
         </div>
     </div>
+    <!-- ------------------------------------------------------- -->
+    <div class="bs-example">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Incoming Messages</h5>
+                            </div>
+                            <div class="modal-body">
+                                <table class="table" id="incoming">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Topic</th>
+                                            <th scope="col">Payload</th>
+                                            <th scope="col">Time Stamp</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                                <button type="button" class="btn btn-outline-dark" id="clearIn">Clear</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-sm-4">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Published Messages</h5>
+                            </div>
+                            <div class="modal-body">
+                                <table class="table" id="publish">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Topic</th>
+                                            <th scope="col">Payload</th>
+                                            <th scope="col">Time Stamp</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                                <button type="button" class="btn btn-outline-dark" id="clearPu">Clear</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-4">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Subscribed Mesages</h5>
+                            </div>
+                            <div class="modal-body">
+                                <table class="table" id="subscribe">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Topic</th>
+                                            <th scope="col">Time Stamp</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                                <button type="button" class="btn btn-outline-dark" id="clearSu">Clear</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+    </div>
 </body>
-<script src="./browserMqtt.js"></script>
-<script src="./index.js"></script>
+<script src="./browserMqtt.js "></script>
+<script src="./index.js "></script>
+
 </html>
